@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative; /* Tambahkan posisi relatif untuk card */
+            z-index: 1;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+            white-space: pre-line;
+        }
+        img {
+            max-width: 10%; /* Ubah lebar gambar agar lebih besar */
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative; /* Tambahkan posisi relatif untuk gambar */
+            z-index: 2; /* Atur z-index agar gambar dan teks ucapan berada di atas */
+        }
+        .love-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0; /* Agar efek love dan bunga berada di belakang gambar dan teks */
+        }
+        .love-effect .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff69b4;
+            opacity: 0;
+            pointer-events: none;
+            animation: love-fall 3s linear infinite;
+        }
+        .love-effect .flower {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff1493;
+            opacity: 0;
+            pointer-events: none;
+            animation: flower-fall 5s linear infinite;
+        }
+        @keyframes love-fall {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(100vh); }
+        }
+        @keyframes flower-fall {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(100vh); }
+        }
+        .hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 1s;
+        }
+        .emoji {
+            position: fixed;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" onclick="showMessage()">
+        <img src="c:/Users/chandry/Downloads/sipe3.jpeg" alt="Image 1">
+        <img src="c:/Users/chandry/Downloads/sipe4.jpeg" alt="Image 2">
+        <div class="love-effect">
+            <!-- Efek love dan bunga -->
+            <div class="heart" style="left: 20%; top: 20%;"></div>
+            <div class="heart" style="left: 50%; top: 40%;"></div>
+            <div class="heart" style="left: 80%; top: 60%;"></div>
+            <div class="flower" style="left: 30%; top: 30%;"></div>
+            <div class="flower" style="left: 60%; top: 50%;"></div>
+            <div class="flower" style="left: 90%; top: 70%;"></div>
+        </div>
+        <p>"Selamat ulang tahun! Ingat, umur cuma angka. Tapi kalau angkanya sudah tiga digit, mungkin kamu alien."</p>
+        <h1>🎉 Klik untuk Ucapan! 🎂</h1>
+        <p id="message" class="hidden">"Selamat ulang tahun, ncipee !!! 
+            Semoga hari ini kamu merasa lebih istimewa daripada saat kamu menemukan lafonte favoritmu di kulkas.
+            Kamu adalah teteh teteh ngalcer Semoga panjang umur, sehat selalu, kebahagiaan dan cinta selalu menyertaimu.
+            Dan ingat, semakin tua, semakin manis ANJAYY SLEBEWW !!!😍"</p>
+            <p>from : challgamtenk</p>
+    </div>
+
+    <script>
+        function showMessage() {
+            var message = document.getElementById('message');
+            message.classList.remove('hidden');
+            message.classList.add('fade-in');
+            document.querySelector('h1').textContent = '🎉 Selamat Ulang Tahun! 🎂';
+            createEmojis();
+        }
+
+        function createEmojis() {
+            const emojis = ['❤️', '🌸', '🌹', '🌺', '💐', '🌷', '💖'];
+            const colors = ['#ff0000', '#ff69b4', '#ff1493', '#ff00ff', '#da70d6', '#ba55d3', '#9370db'];
+            const totalEmojis = 1000;
+
+            for (let i = 0; i < totalEmojis; i++) {
+                let emoji = document.createElement('div');
+                emoji.classList.add('emoji');
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.fontSize = (Math.random() * 30 + 20) + 'px'; // Ukuran antara 20px dan 50px
+                emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                emoji.style.animationDelay = Math.random() * 5 + 's';
+                
+                // Menambahkan efek bayangan warna
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                emoji.style.textShadow = `0 0 5px ${color}, 0 0 10px ${color}, 0 0 15px ${color}`;
+                
+                document.body.appendChild(emoji);
+            }
+        }
+    </script>
+</body>
+</html>
